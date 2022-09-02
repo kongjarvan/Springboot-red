@@ -50,7 +50,21 @@ public class UsersController {
 		return new RespDto<>(1, "수정완료", null);
 	}
 	
-
+	
+	@PutMapping("/users/{id}/password")
+	public RespDto<?> update(@PathVariable Integer id, String password){
+		//1. 영속화
+		Users UsersPS= usersDao.findById(id);
+		
+		//2. 변경
+		UsersPS.비밀번호수정(password);
+		
+		//3. 영속화된 오브젝트 update
+		usersDao.update(UsersPS);
+		
+		return new RespDto<>(1, "수정완료", null);
+	}
+	
 	
 	@DeleteMapping("/users/{id}")
 	public RespDto<?> delete(@PathVariable Integer id){
