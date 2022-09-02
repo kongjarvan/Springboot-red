@@ -29,14 +29,16 @@ public class BoardsController {
 		return new RespDto<>(1, "글쓰기 성공", null);
 	}
 	
+	
 	@GetMapping("/boards")
-	public RespDto<?> select(){
+	public RespDto<?> findAll(){
 		return new RespDto<>(1, "조회 성공", boardsDao.findAll());
 	}
 	
+	
 	@GetMapping("/boards/{id}")
-	public RespDto<?> findById(@PathVariable Integer id){
-		return new RespDto<>(1, "조회 성공", boardsDao.findById(id));
+	public RespDto<?> findByIdtoDetail(@PathVariable Integer id){
+		return new RespDto<>(1, "조회 성공", boardsDao.findByIdtoDetail(id));
 	}
 	
 	@PutMapping("/boards/{id}")
